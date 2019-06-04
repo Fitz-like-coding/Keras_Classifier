@@ -188,7 +188,6 @@ if __name__ == '__main__':
                       'max_words': int(conf.get('hyperparameter', 'max_words')),
                       'emb': int(conf.get('hyperparameter', 'emb')),
                       'epochs': int(conf.get('hyperparameter', 'batch')),
-                      'train': int(conf.get('hyperparameter', 'train')),
                       'ngram': int(conf.get('hyperparameter','ngram')),
                       'model': str(conf.get('hyperparameter','model'))}
 
