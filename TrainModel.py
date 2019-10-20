@@ -31,7 +31,7 @@ def train_model(hyperparameter, datapath, x_train, y_train, x_dev, y_dev, classN
               batch_size=batch, epochs=epochs,class_weight=class_weight,shuffle=False,
               callbacks=[
                   ModelCheckpoint(model_output + '/' + model_name + 'epoch:02d_{val_acc:2f}.h5',
-                                  monitor='val_acc', verbase=1, save_best_only=True, period=5)
+                                  monitor='val_acc', verbose=1, save_best_only=True, period=5)
               ])
     end_time = time.time()
     print ('模型训练用时: %s S' % (end_time - start_time))

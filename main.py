@@ -69,13 +69,13 @@ class auto_classifier:
             class_weight = {int(index): weight for index, weight in class_weight.items()}
         else:
             try:
-                x = list(map(lambda x: x['content', records]))
-                y = list(map(lambda x: x['label', records]))
+                x = list(map(lambda x: x['content'], records))
+                y = list(map(lambda x: x['label'], records))
 
                 # create word2id dict
                 if MODEL_TYPE != 'FastText':
                     N_GRAM = 1
-                vectorizer = CountVectorizer(token_pattern = '[^\s]+', ngram_range=(1,N_GRAM), max_df=0.95, min_df=3, max_feature=MAX_WORDS)
+                vectorizer = CountVectorizer(token_pattern = '[^\s]+', ngram_range=(1,N_GRAM), max_df=0.95, min_df=3, max_features=MAX_WORDS)
                 vectorizer.fit(x)
                 word2id = {word: str(index)+2 for word, index in vectorizer.vocabulary_.items()}
 
@@ -90,7 +90,7 @@ class auto_classifier:
                 class_weight = {int(index): max(label_freq.values())/label_freq[label]
                                 for index, label in enumerate(Binarizer.classes_)}
 
-                # strre model parameter
+                # store model parameter
                 parameter = {'model': MODEL_TYPE, 'max_length': MAX_SEQUENCE_LENGTH, 'ngram': N_GRAM}
 
                 # dump config file
